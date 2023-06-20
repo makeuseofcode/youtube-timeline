@@ -1,0 +1,49 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.video {
+    width: 100%;
+    height: 500px;
+    background-color: #333;
+    display: flex;
+    align-items: flex-end;
+}
+
+.timeline {
+    height: 20px;
+    width: 100%;
+    background-color: #777;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: var(--handle-position);
+    background-color: red;
+}
+
+.handle {
+    position: absolute;
+    left: var(--handle-position);
+    transform: translateX(-50%);
+    background-color: red;
+    height: 200%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+.dot {
+    position: absolute;
+    background-color: red;
+    transform: translate(-50%, -50%);
+}
