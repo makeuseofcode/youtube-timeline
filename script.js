@@ -1,6 +1,7 @@
 const video = document.querySelector(".video")
 const timeline = document.querySelector(".timeline")
 
+/* 
 video.addEventListener("pointerdown", e=> {
     const dot = document.createElement("div")
     dot.classList.add(".dot")
@@ -21,9 +22,19 @@ video.addEventListener("pointerdown", e=> {
     if(dot == null) return
     positionDot(e, dot)
   })
+*/
+
+// This is the actual YouTube player emulator:
 
   timeline.addEventListener("pointerdown", e=> {
+    timeline.setPointerCapture(e.pointerId)
     setTimelinePosition(e)
+
+    timeline.addEventListener("pointermove", setTimelinePosition)
+
+    timeline.addEventListener("pointerup", () => {
+      timeline.removeEventListener("pointermove", setTimelinePosition)
+    }, {once: true})
   })
 
   function setTimelinePosition(e) {
@@ -31,8 +42,4 @@ video.addEventListener("pointerdown", e=> {
     timeline.style.setProperty("--handle-position", `${e.clientX / rect.width * 100}%`)
   }
 
-  timeline.addEventListener("pointermove", setTimelinePosition)
-
-  timeline.addEventListener("pointerup", () => {
-    timeline.removeEventListener("pointermove", setTimelinePosition)
-  }, {once: true})
+  
